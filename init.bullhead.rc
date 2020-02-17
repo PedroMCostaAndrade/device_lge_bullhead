@@ -85,6 +85,7 @@ on init
 on fs
     mount_all ./fstab.bullhead
     swapon_all ./fstab.bullhead
+    mkdir /persist/data 0700 system system
 
     setprop sys.usb.ffs.aio_compat 1
     setprop persist.adb.nonblocking_ffs 0
@@ -191,7 +192,6 @@ on boot
 on post-fs
     symlink /dev/block/platform/soc.0/f9824900.sdhci /dev/block/bootdevice
 
-    mkdir /persist/data 0700 system system
     mkdir /persist/data/sfs 0700 system system
     mkdir /persist/data/tz 0700 system system
     mkdir /persist/data/app_g 0700 system system
@@ -227,7 +227,7 @@ on post-fs-data
     write /sys/devices/soc.0/f9924000.i2c/power/control on
 
     # Create /data/time folder for time-services
-    mkdir /data/time/ 0700 system system
+    mkdir /data/time/ 0770 system system
 
     # Create the directories used by the Wireless subsystem
     mkdir /data/vendor/wifi 0770 wifi wifi
@@ -261,6 +261,8 @@ on post-fs-data
     mkdir /data/misc/location/mq 0770 gps gps
     mkdir /data/misc/location/xtwifi 0770 gps gps
     mkdir /data/misc/location/gpsone_d 0770 system gps
+
+    mkdir /persist/time 0770 system system
 
     # Audio
     mkdir /data/misc/audio 0770 audio audio
