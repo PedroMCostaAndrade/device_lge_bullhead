@@ -1,5 +1,4 @@
-on boot
-
+on early-boot
     chown system system /sys/class/leds/red/brightness
     chmod 664 /sys/class/leds/red/brightness
     chown system system /sys/class/leds/green/brightness
