@@ -65,6 +65,3 @@ allow netmgrd toolbox_exec:file rx_file_perms;
 
 #Allow netmgrd to use wakelock
 wakelock_use(netmgrd)
-
-allow netmgrd dnsresolver_service:service_manager find;
-allow netmgrd netd_service:service_manager find;
