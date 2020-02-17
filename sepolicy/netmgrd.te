@@ -1,6 +1,6 @@
 # Network utilities (radio process)
-type netmgrd, domain, coredomain, device_domain_deprecated;
-type netmgrd_exec, exec_type, file_type,system_file_type;
+type netmgrd, domain;
+type netmgrd_exec, exec_type, file_type, vendor_file_type;
 
 # Uses network sockets.
 net_domain(netmgrd)
@@ -42,9 +42,6 @@ dontaudit netmgrd self:capability sys_module;
 # Set net_radio properties
 set_prop(netmgrd, net_radio_prop)
 
-# Permission to run netd commands
-allow netmgrd netmgrd_socket:sock_file write;
-
 #Allow access to files associated with netd
 allow netmgrd net_data_file:file r_file_perms;
 allow netmgrd net_data_file:dir r_dir_perms;
@@ -68,3 +65,6 @@ allow netmgrd toolbox_exec:file rx_file_perms;
 
 #Allow netmgrd to use wakelock
 wakelock_use(netmgrd)
+
+allow netmgrd dnsresolver_service:service_manager find;
+allow netmgrd netd_service:service_manager find;

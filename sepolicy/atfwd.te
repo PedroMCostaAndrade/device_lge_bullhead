@@ -1,5 +1,5 @@
-type atfwd,domain,coredomain,device_domain_deprecated;
-type atfwd_exec, exec_type, file_type, system_file_type;
+type atfwd, domain;
+type atfwd_exec, exec_type, file_type, vendor_file_type;
 
 # Started by init
 init_daemon_domain(atfwd)
@@ -13,7 +13,8 @@ binder_call(atfwd, system_app);
 
 allow atfwd self:udp_socket create;
 
-allow atfwd atfwd_service:service_manager find;
+# this is denied
+#allow atfwd atfwd_service:service_manager find;
 
 allow atfwd diag_device:chr_file rw_file_perms;
 
